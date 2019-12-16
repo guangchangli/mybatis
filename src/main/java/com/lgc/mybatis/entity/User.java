@@ -1,4 +1,4 @@
-package com.lgc.mybatis;
+package com.lgc.mybatis.entity;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ import java.util.Date;
  * @author lgc
  * @create 2019-12-15 11:20 下午
  **/
-public class TbUser {
+public class User {
     private String id;
     private String userName;
     private String password;
@@ -87,5 +87,20 @@ public class TbUser {
 
     public void setUpdated(String updated) {
         this.updated = updated;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                ", birthday=" + birthday +
+                ", created='" + created + '\'' +
+                ", updated='" + updated + '\'' +
+                '}';
     }
 }
