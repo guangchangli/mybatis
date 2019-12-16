@@ -5,8 +5,8 @@
 <!-- 根标签 -->
 <!--严格按照顺序 properties properties 文件 先读取 properties 在读取properties 中的 url(local file)
         setting
-            cacheEnable(true)
-            lazyLoadingEnable(false) <- fetchType可以覆盖
+            cacheEnabled(true)
+            lazyLoadingEnabled(false) <- fetchType可以覆盖
             aggressiveLazyLoading(true) 带有延迟属性的对象的调用延迟调用 /按需加载
             mapUnderscoreToCamelCase(false)
         typeAliases
@@ -30,8 +30,8 @@
     <!-- 驼峰-->
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
-        <setting name="lazyLoadingEnable" value="true"/>
-        <setting name="cacheEnable" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="cacheEnabled" value="true"/>
     </settings>
     <!-- 配置别名-->
     <typeAliases>
@@ -39,9 +39,9 @@
         <package name="com.lgc.mybatis.entity"/>
     </typeAliases>
     <!-- 类处理器 解决 preStatement rs 转为 java类型-->
-    <typeHandlers>
-        <typeHandler handler="com.lgc.mybatis.config.myTypeHandler"/>
-    </typeHandlers>
+<!--    <typeHandlers>-->
+<!--        <typeHandler handler="com.lgc.mybatis.config.MyTypeHandler"/>-->
+<!--    </typeHandlers>-->
 
     <!-- 环境，可以配置多个，default：指定采用哪个环境 -->
     <environments default="test">
@@ -73,5 +73,6 @@
         <mapper resource="mappers/MyMapper.xml"></mapper>
         <mapper resource="mappers/UserDaoMapper.xml"></mapper>
         <mapper resource="mappers/UserMapper.xml"></mapper>
+        <mapper resource="mappers/PersonMapper.xml"></mapper>
     </mappers>
 </configuration>

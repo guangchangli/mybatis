@@ -88,5 +88,6 @@ public class UserMapperTest {
     public void testDeleteUserById() {
         this.userMapper.deleteUserById(Long.valueOf("1"));
     }
+
 }
 
