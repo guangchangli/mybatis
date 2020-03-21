@@ -9,13 +9,13 @@
     <resultMap id="personMap" type="com.lgc.mybatis.entity.Person">
         <id column="id" property="id"/>
         <result column="sex" property="sex" typeHandler="com.lgc.mybatis.config.MyTypeHandler"/>
-<!--        <association property="" column=""/>-->
-<!--        <constructor></constructor>-->
-<!--        <discriminator javaType="">-->
-<!--            -->
-<!--            <case value=""></case>-->
-<!--        </discriminator>-->
-<!--        <collection property=""/>-->
+        <!--        <association property="" column=""/>-->
+        <!--        <constructor></constructor>-->
+        <!--        <discriminator javaType="">-->
+        <!--            -->
+        <!--            <case value=""></case>-->
+        <!--        </discriminator>-->
+        <!--        <collection property=""/>-->
     </resultMap>
     <select id="selectPersonById" parameterType="java.lang.String" resultMap="personMap">
         select * from person where id=#{id}

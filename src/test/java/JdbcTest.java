@@ -20,7 +20,7 @@ public class JdbcTest {
             // 获取连接
             String url = "jdbc:mysql://127.0.0.1:3306/lgc";
             String user = "root";
-            String password = "mysql.com";
+            String password = "Chang0.com";
             connection = DriverManager.getConnection(url, user, password);
             // 获取statement，preparedStatement
             String sql = "select * from tb_user where id=?";
@@ -31,7 +31,7 @@ public class JdbcTest {
             rs = prepareStatement.executeQuery();
             // 处理结果集
             while (rs.next()) {
-                System.out.println(rs.getString("user_name"));
+                System.out.println(rs.getString("userName"));
                 System.out.println(rs.getString("name"));
                 System.out.println(rs.getInt("age"));
                 System.out.println(rs.getDate("birthday"));

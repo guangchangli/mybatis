@@ -1,106 +1,56 @@
 package com.lgc.mybatis.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.serializer.JSONSerializer;
+import com.alibaba.fastjson.serializer.ObjectSerializer;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.Date;
 
 /**
  * @author lgc
  * @create 2019-12-15 11:20 下午
  **/
-public class User {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+public class User implements Serializable {
+    @JSONField(ordinal = 4)
     private String id;
+    @JSONField(ordinal = 4)
     private String userName;
+    //不序列化
+    @JSONField(ordinal = 4,serialize = false)
     private String password;
+    //本来是json 直接输出
+    @JSONField(ordinal = 1,jsonDirect = true)
     private String name;
+    //指定 序列化类
+    @JSONField(ordinal = 4, serializeUsing = MySerializer.class)
     private Integer age;
+    @JSONField(ordinal = 4)
     private Integer sex;
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss", ordinal = 3)
     private Date birthday;
+    @JSONField(format = "yyyy-MM-dd", ordinal = 1)
     private String created;
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss", ordinal = 2)
     private String updated;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Integer getSex() {
-        return sex;
-    }
-
-    public void setSex(Integer sex) {
-        this.sex = sex;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getCreated() {
-        return created;
-    }
-
-    public void setCreated(String created) {
-        this.created = created;
-    }
-
-    public String getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(String updated) {
-        this.updated = updated;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", sex=" + sex +
-                ", birthday=" + birthday +
-                ", created='" + created + '\'' +
-                ", updated='" + updated + '\'' +
-                '}';
+    public static class MySerializer implements ObjectSerializer {
+        @Override
+        public void write(JSONSerializer serializer, Object object, Object fieldName, Type fieldType,
+                          int features) {
+            Integer value = (Integer) object;
+            String text = value + "岁";
+            serializer.write(text);
+        }
     }
 }

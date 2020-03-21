@@ -1,3 +1,4 @@
+import com.alibaba.fastjson.JSON;
 import com.lgc.mybatis.dao.PersonMapper;
 import com.lgc.mybatis.dao.UserMapper;
 import com.lgc.mybatis.entity.Person;
@@ -36,13 +37,15 @@ public class TestHandler {
         // 4. statement的parameterType必须和mapper接口方法的参数类型一致（不一定）
         this.userMapper = sqlSession.getMapper(UserMapper.class);
     }
+
     @Test
-    public void testMyHandler(){
+    public void testMyHandler() {
         User user = userMapper.selectUserById("1");
-        System.out.println(user);
+        System.out.println(JSON.toJSONString(user));
     }
+
     @Test
-    public void testMyHandler1(){
+    public void testMyHandler1() {
         Person person = personMapper.selectPersonById("1");
         System.out.println(person);
     }

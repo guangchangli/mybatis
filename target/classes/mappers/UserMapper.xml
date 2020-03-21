@@ -91,13 +91,13 @@
     <resultMap id="UserMap" type="com.lgc.mybatis.entity.User">
         <id column="id" property="id"/>
         <result column="sex" property="sex" typeHandler="com.lgc.mybatis.config.MyTypeHandler"/>
-<!--        <association property="" column=""/>-->
-<!--        <constructor></constructor>-->
-<!--        <discriminator javaType="">-->
-<!--            -->
-<!--            <case value=""></case>-->
-<!--        </discriminator>-->
-<!--        <collection property=""/>-->
+        <!--        <association property="" column=""/>-->
+        <!--        <constructor></constructor>-->
+        <!--        <discriminator javaType="">-->
+        <!--            -->
+        <!--            <case value=""></case>-->
+        <!--        </discriminator>-->
+        <!--        <collection property=""/>-->
     </resultMap>
     <select id="selectUserById" parameterType="java.lang.String" resultMap="UserMap">
         select * from tb_user where id=#{id}
