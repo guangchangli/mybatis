@@ -36,6 +36,7 @@ public class TestHandler {
         // 3. Statement的resultType必须和mapper接口方法的返回类型一致
         // 4. statement的parameterType必须和mapper接口方法的参数类型一致（不一定）
         this.userMapper = sqlSession.getMapper(UserMapper.class);
+        this.personMapper = sqlSession.getMapper(PersonMapper.class);
     }
 
     @Test

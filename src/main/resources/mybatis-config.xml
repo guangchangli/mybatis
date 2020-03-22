@@ -32,6 +32,7 @@
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
         <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
         <setting name="cacheEnabled" value="true"/>
     </settings>
     <!-- 配置别名-->
@@ -75,5 +76,6 @@
         <mapper resource="mappers/UserDaoMapper.xml"></mapper>
         <mapper resource="mappers/UserMapper.xml"></mapper>
         <mapper resource="mappers/PersonMapper.xml"></mapper>
+        <mapper resource="mappers/StudentMapper.xml"></mapper>
     </mappers>
 </configuration>

@@ -1,13 +1,20 @@
 package com.lgc.mybatis.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @author lgc
  * @create 2019-12-16 11:12 下午
  **/
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Person {
     private String id;
     private String name;
-    private int age;
+    private Integer age;
     private String sex;
 
     @Override
@@ -20,35 +27,5 @@ public class Person {
                 '}';
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
 }

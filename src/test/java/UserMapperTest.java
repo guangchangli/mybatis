@@ -23,7 +23,7 @@ public class UserMapperTest {
         InputStream inputStream = Resources.getResourceAsStream(resource);
         // 构建sqlSessionFactory
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        // 获取sqlSession
+        // 获取sqlSession(自动提交)
         SqlSession sqlSession = sqlSessionFactory.openSession(true);
 
         // 1. 映射文件的命名空间（namespace）必须是mapper接口的全路径
@@ -66,7 +66,7 @@ public class UserMapperTest {
         user.setBirthday(new Date());
         user.setName("大神");
         user.setPassword("123456");
-        user.setSex(2);
+        user.setSex("2");
         user.setUserName("bigGod222");
         this.userMapper.insertUser(user);
         System.out.println(user.getId());
@@ -78,7 +78,7 @@ public class UserMapperTest {
         user.setBirthday(new Date());
         user.setName("静静");
         user.setPassword("123456");
-        user.setSex(0);
+        user.setSex("1");
         user.setUserName("Jinjin");
         user.setId("1");
         this.userMapper.updateUser(user);

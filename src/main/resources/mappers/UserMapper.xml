@@ -91,7 +91,7 @@
     <resultMap id="UserMap" type="com.lgc.mybatis.entity.User">
         <id column="id" property="id"/>
         <result column="sex" property="sex" typeHandler="com.lgc.mybatis.config.MyTypeHandler"/>
-        <!--        <association property="" column=""/>-->
+<!--                <association property="student" column=""/>-->
         <!--        <constructor></constructor>-->
         <!--        <discriminator javaType="">-->
         <!--            -->

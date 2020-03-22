@@ -15,7 +15,7 @@
     <select id="queryUserById" resultType="com.lgc.mybatis.entity.User">
       select
        tuser.id as id,
-       tuser.user_name as userName,
+       tuser.username as userName,
        tuser.password as password,
        tuser.name as name,
        tuser.age as age,
@@ -32,11 +32,10 @@
         select * from tb_user;
     </select>
 
-    <!--插入数据-->
-    <insert id="insertUser" parameterType="com.lgc.mybatis.entity.User">
+    <!--插入数据 使用自增主键获取主键属性-->
+    <insert id="insertUser" parameterType="com.lgc.mybatis.entity.User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO tb_user (
-        id,
-        user_name,
+        username,
         password,
         name,
         age,
@@ -47,7 +46,6 @@
         )
         VALUES
         (
-        #{id},
         #{userName},
         #{password},
         #{name},
@@ -62,7 +60,7 @@
     <update id="updateUser" parameterType="com.lgc.mybatis.entity.User">
         UPDATE tb_user
         <trim prefix="set" suffixOverrides=",">
-            <if test="userName!=null">user_name = #{userName},</if>
+            <if test="userName!=null">username = #{userName},</if>
             <if test="password!=null">password = #{password},</if>
             <if test="name!=null">name = #{name},</if>
             <if test="age!=null">age = #{age},</if>
@@ -77,5 +75,54 @@
     <delete id="deleteUser">
         delete from tb_user where id=#{id}
     </delete>
+
+    <select id="selectUserMap" resultType="map" parameterType="java.lang.String">
+        select * from tb_user where id=#{id}
+    </select>
+    <select id="selectMapUser" resultType="map" parameterType="java.lang.String">
+        select * from tb_user where id > #{id}
+    </select>
+    <resultMap id="userResultMap" type="com.lgc.mybatis.entity.User">
+        <id column="id" property="id"/>
+        <result column="sex" property="sex" typeHandler="com.lgc.mybatis.config.MyTypeHandler"/>
+        <result column="sid" property="student.id"/>
+        <result column="sname" property="student.name"/>
+        <result column="phone" property="student.phone"/>
+    </resultMap>
+    <resultMap id="userResultMapAss" type="com.lgc.mybatis.entity.User">
+        <id column="id" property="id"/>
+        <result column="sex" property="sex" typeHandler="com.lgc.mybatis.config.MyTypeHandler"/>
+        <result column="sid" property="student.id"/>
+        <association property="student" javaType="com.lgc.mybatis.entity.Student">
+            <id column="sid" property="id"/>
+            <result column="sname" property="name"/>
+            <result column="phone" property="phone"/>
+        </association>
+    </resultMap>
+    <!-- 级联查询-->
+    <select id="selectUserByResultMap" parameterType="java.lang.String"
+            resultMap="userResultMap">
+        select tb_user.*,student.name as sname, student.phone,  student.id as sid from tb_user left join student on tb_user.id=student.id where tb_user.id=#{id}
+    </select>
+    <select id="selectUserByResultMapAss" parameterType="java.lang.String"
+            resultMap="userResultMapAss">
+        select tb_user.*,student.name as sname, student.phone,  student.id as sid from tb_user left join student on tb_user.id=student.id where tb_user.id=#{id}
+    </select>
+    <!-- 对象关联分布查询
+       在mybatis中，
+       resultMap可以实现高级映射(使用association、collection实现一对一及一对多映射)，
+       association、collection具备延迟加载功能。
+       fetchType 优先 eager/lazy -->
+    <resultMap id="userResultMapStep" type="com.lgc.mybatis.entity.User">
+        <id column="id" property="id"/>
+        <result column="sex" property="sex" typeHandler="com.lgc.mybatis.config.MyTypeHandler"/>
+        <association property="student"
+                     select="com.lgc.mybatis.dao.StudentMapper.getStudentById"
+                     column="id" fetchType="eager">
+        </association>
+    </resultMap>
+    <select id="selectUserByStep" parameterType="java.lang.String" resultMap="userResultMapStep">
+        select * from tb_user where id=#{id}
+    </select>
 </mapper>
 

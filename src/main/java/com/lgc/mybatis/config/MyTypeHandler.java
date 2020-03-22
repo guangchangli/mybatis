@@ -1,9 +1,6 @@
 package com.lgc.mybatis.config;
 
-import org.apache.ibatis.type.BaseTypeHandler;
-import org.apache.ibatis.type.JdbcType;
-import org.apache.ibatis.type.MappedJdbcTypes;
-import org.apache.ibatis.type.MappedTypes;
+import org.apache.ibatis.type.*;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -23,36 +20,33 @@ import java.sql.SQLException;
  **/
 @MappedTypes(String.class)
 @MappedJdbcTypes(JdbcType.CHAR)
-public class MyTypeHandler extends BaseTypeHandler<String> {
+public class MyTypeHandler implements TypeHandler<String> {
 
+    @Override
+    public void setParameter(PreparedStatement preparedStatement, int i, String s, JdbcType jdbcType) throws SQLException {
+    }
 
-    public String getSex(char sex) {
-        if ("1".equals(String.valueOf(sex))) {
+    @Override
+    public String getResult(ResultSet resultSet, String s) throws SQLException {
+        int tsex = resultSet.getInt("tSex");
+//        int ssex = resultSet.getInt("sex");
+        int sSex = resultSet.getInt("sSex");
+        int sex=tsex+sSex;
+        if (1 == sex) {
             return "男";
-        } else if ("2".equals(String.valueOf(sex))) {
+        } else if (2 == sex) {
             return "女";
-        } else {
-            return null;
         }
+        return "";
     }
 
     @Override
-    public void setNonNullParameter(PreparedStatement preparedStatement, int i, String s, JdbcType jdbcType) throws SQLException {
-
-    }
-
-    @Override
-    public String getNullableResult(ResultSet resultSet, String s) throws SQLException {
+    public String getResult(ResultSet resultSet, int i) throws SQLException {
         return null;
     }
 
     @Override
-    public String getNullableResult(ResultSet resultSet, int i) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public String getNullableResult(CallableStatement callableStatement, int i) throws SQLException {
+    public String getResult(CallableStatement callableStatement, int i) throws SQLException {
         return null;
     }
 }

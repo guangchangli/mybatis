@@ -1,4 +1,3 @@
-
 import com.lgc.mybatis.dao.UserDao;
 import com.lgc.mybatis.entity.User;
 import org.apache.ibatis.io.Resources;
@@ -8,9 +7,11 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class UserDaoTest {
 
@@ -18,7 +19,7 @@ public class UserDaoTest {
     public SqlSession sqlSession;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws IOException {
         // mybatis-config.xml
         String resource = "mybatis-config.xml";
         // 读取配置文件
@@ -33,12 +34,12 @@ public class UserDaoTest {
     }
 
     @Test
-    public void queryUserById() throws Exception {
+    public void queryUserById() {
         System.out.println(this.userDao.queryUserById("1"));
     }
 
     @Test
-    public void queryUserAll() throws Exception {
+    public void queryUserAll()  {
         List<User> userList = this.userDao.queryUserAll();
         for (User user : userList) {
             System.out.println(user);
@@ -46,26 +47,26 @@ public class UserDaoTest {
     }
 
     @Test
-    public void insertUser() throws Exception {
+    public void insertUser() {
         User user = new User();
-        user.setId("3");
         user.setAge(16);
         user.setBirthday(new Date("1990/09/02"));
         user.setName("大鹏");
         user.setPassword("123456");
-        user.setSex(1);
+        user.setSex("1");
         user.setUserName("evan");
         this.userDao.insertUser(user);
         this.sqlSession.commit();
+        System.out.println(user.getId());
     }
 
     @Test
-    public void updateUser() throws Exception {
+    public void updateUser()  {
         User user = new User();
         user.setBirthday(new Date());
         user.setName("静鹏");
         user.setPassword("654321");
-        user.setSex(1);
+        user.setSex("1");
         user.setUserName("evanjin");
         user.setId("1");
         this.userDao.updateUser(user);
@@ -73,8 +74,20 @@ public class UserDaoTest {
     }
 
     @Test
-    public void deleteUser() throws Exception {
+    public void deleteUser() {
         this.userDao.deleteUser("4");
+        this.sqlSession.commit();
+    }
+    @Test
+    public void selectUserMap()  {
+        Map<String, Object> stringObjectMap = this.userDao.selectUserMap("1");
+        System.out.println(stringObjectMap);
+        this.sqlSession.commit();
+    }
+    @Test
+    public void selectMapUser()  {
+        Map<String, User> stringObjectMap = this.userDao.selectMapUser("1");
+        System.out.println(stringObjectMap);
         this.sqlSession.commit();
     }
 

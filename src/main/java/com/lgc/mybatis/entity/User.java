@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.Date;
@@ -36,13 +35,14 @@ public class User implements Serializable {
     @JSONField(ordinal = 4, serializeUsing = MySerializer.class)
     private Integer age;
     @JSONField(ordinal = 4)
-    private Integer sex;
+    private String sex;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss", ordinal = 3)
     private Date birthday;
     @JSONField(format = "yyyy-MM-dd", ordinal = 1)
     private String created;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss", ordinal = 2)
     private String updated;
+    private Student student;
 
     public static class MySerializer implements ObjectSerializer {
         @Override

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lgc.mybatis.dao.StudentMapper">
+    <resultMap id="studentMap" type="com.lgc.mybatis.entity.Student">
+        <id column="id" property="id"/>
+        <!--        <association property="" column=""/>-->
+        <!--        <constructor></constructor>-->
+        <!--        <discriminator javaType="">-->
+        <!--            -->
+        <!--            <case value=""></case>-->
+        <!--        </discriminator>-->
+        <!--        <collection property=""/>-->
+    </resultMap>
+    <select id="getStudentById" parameterType="java.lang.String" resultType="com.lgc.mybatis.entity.Student">
+        select id,name,phone from student where id=#{id}
+    </select>
+    <resultMap id="collectionResultMap" type="Student">
+        <id column="sId" property="id"/>
+        <result column="sName" property="name"/>
+        <result column="sSex" property="sex" typeHandler="com.lgc.mybatis.config.MyTypeHandler"/>
+        <collection property="list" ofType="Person">
+            <id column="tId" property="id"/>
+            <result column="tName" property="name"/>
+            <result column="tSex" property="sex" typeHandler="com.lgc.mybatis.config.MyTypeHandler"/>
+        </collection>
+    </resultMap>
+    <select id="getStudentUser" parameterType="string" resultMap="collectionResultMap">
+        select s.id as sId,s.sex as sSex,s.name as sName,t.id as tId,t.name as tName,t.sex as tSex from student s join person t on s.id=t.id where s.id=#{id}
+    </select>
+</mapper>
+
