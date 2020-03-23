@@ -28,10 +28,10 @@ public class MyTypeHandler implements TypeHandler<String> {
 
     @Override
     public String getResult(ResultSet resultSet, String s) throws SQLException {
-        int tsex = resultSet.getInt("tSex");
+//        int tsex = resultSet.getInt("tSex");
 //        int ssex = resultSet.getInt("sex");
         int sSex = resultSet.getInt("sSex");
-        int sex=tsex+sSex;
+        int sex=sSex;
         if (1 == sex) {
             return "男";
         } else if (2 == sex) {

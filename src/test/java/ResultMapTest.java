@@ -55,5 +55,9 @@ public class ResultMapTest {
         Student studentUser = studentMapper.getStudentUser("1");
         System.out.println(studentUser);
     }
+    @Test
+    public void testCollectionParamMap(){
+        System.out.println(studentMapper.getStudentUserMap("1"));
+    }
 
 }

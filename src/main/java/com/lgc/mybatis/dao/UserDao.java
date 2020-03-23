@@ -59,4 +59,5 @@ public interface UserDao {
      *  在mybatis中，resultMap可以实现高级映射(使用association、collection实现一对一及一对多映射)，association、collection具备延迟加载功能。
      */
     User selectUserByStep(String id);
+
 }

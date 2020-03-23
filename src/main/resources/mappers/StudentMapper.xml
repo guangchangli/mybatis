@@ -29,5 +29,27 @@
     <select id="getStudentUser" parameterType="string" resultMap="collectionResultMap">
         select s.id as sId,s.sex as sSex,s.name as sName,t.id as tId,t.name as tName,t.sex as tSex from student s join person t on s.id=t.id where s.id=#{id}
     </select>
+    <resultMap id="collectionMap" type="Student">
+        <id column="sId" property="id"/>
+        <!-- 鉴别器 自定义封装规则-->
+        <discriminator javaType="string" column="sSex">
+            <case value="0" resultType="com.lgc.mybatis.entity.Student">
+                <collection property="list" select="com.lgc.mybatis.dao.PersonMapper.selectPersonById" column="sId"
+                            fetchType="eager">
+                </collection>
+            </case>
+            <case value="1" resultType="com.lgc.mybatis.entity.Student">
+                <result column="sName" property="phone"/>
+                <result column="sSex" property="sex" typeHandler="com.lgc.mybatis.config.MyTypeHandler"/>
+                <collection property="list" select="com.lgc.mybatis.dao.PersonMapper.selectPersonById" column="sId"
+                            fetchType="eager">
+                </collection>
+            </case>
+        </discriminator>
+    </resultMap>
+
+    <select id="getStudentUserMap" parameterType="string" resultMap="collectionMap">
+       select s.id as sId,s.sex as sSex,s.name as sName from student s  where s.id=#{id}
+    </select>
 </mapper>
 

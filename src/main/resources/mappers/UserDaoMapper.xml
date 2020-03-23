@@ -115,7 +115,7 @@
        fetchType 优先 eager/lazy -->
     <resultMap id="userResultMapStep" type="com.lgc.mybatis.entity.User">
         <id column="id" property="id"/>
-        <result column="sex" property="sex" typeHandler="com.lgc.mybatis.config.MyTypeHandler"/>
+        <result column="sex" property="sex" />
         <association property="student"
                      select="com.lgc.mybatis.dao.StudentMapper.getStudentById"
                      column="id" fetchType="eager">

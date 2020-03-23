@@ -8,7 +8,7 @@
 
     <resultMap id="personMap" type="com.lgc.mybatis.entity.Person">
         <id column="id" property="id"/>
-        <result column="sex" property="sex" typeHandler="com.lgc.mybatis.config.MyTypeHandler"/>
+        <result column="sex" property="sex" />
         <!--        <association property="" column=""/>-->
         <!--        <constructor></constructor>-->
         <!--        <discriminator javaType="">-->

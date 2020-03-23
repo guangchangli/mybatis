@@ -8,4 +8,5 @@ import com.lgc.mybatis.entity.Student;
 public interface StudentMapper {
     Student getStudentById(String id);
     Student getStudentUser(String id);
+    Student getStudentUserMap(String id);
 }

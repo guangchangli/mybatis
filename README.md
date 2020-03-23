@@ -13,3 +13,5 @@ select * from ${year}_tableName order by ${month}
     resultMap  typeHandler jdbcTypeName expression(未来支持)
 
 ognl
+
+按需加载有问题
