@@ -13,5 +13,8 @@ select * from ${year}_tableName order by ${month}
     resultMap  typeHandler jdbcTypeName expression(未来支持)
 
 ognl
-
+      <foreach>insert into tb_user (name) values separator ； 执行多次sql 连接属性 需要 allowMultiQueries=true
+      </foreach>
 按需加载有问题
+内置参数 _parameter 单个参数/map
+        _databaseId

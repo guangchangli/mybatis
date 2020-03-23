@@ -77,5 +77,6 @@
         <mapper resource="mappers/UserMapper.xml"></mapper>
         <mapper resource="mappers/PersonMapper.xml"></mapper>
         <mapper resource="mappers/StudentMapper.xml"></mapper>
+        <mapper resource="mappers/Dynamic.xml"></mapper>
     </mappers>
 </configuration>
