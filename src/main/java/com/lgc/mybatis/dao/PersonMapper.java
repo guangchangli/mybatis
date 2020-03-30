@@ -7,5 +7,7 @@ import com.lgc.mybatis.entity.Person;
  * @create 2019-12-16 11:18 下午
  **/
 public interface PersonMapper {
-    Person selectPersonById(String id);
+    Person selectPersonById(Long id);
+
+    int insertPerson(Person person);
 }

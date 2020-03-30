@@ -47,7 +47,7 @@ public class TestHandler {
 
     @Test
     public void testMyHandler1() {
-        Person person = personMapper.selectPersonById("1");
+        Person person = personMapper.selectPersonById(123L);
         System.out.println(person);
     }
 }

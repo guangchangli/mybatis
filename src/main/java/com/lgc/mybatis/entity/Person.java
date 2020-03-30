@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Person {
-    private String id;
+    private Long id;
     private String name;
     private Integer age;
     private String sex;

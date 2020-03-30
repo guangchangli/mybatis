@@ -62,12 +62,12 @@ public class UserMapperTest {
     @Test
     public void testInsertUser() {
         User user = new User();
-        user.setAge(20);
+        user.setAge(22);
         user.setBirthday(new Date());
-        user.setName("大神");
+        user.setName("lll");
         user.setPassword("123456");
-        user.setSex("2");
-        user.setUserName("bigGod222");
+        user.setSex("1");
+        user.setUserName("gggg");
         this.userMapper.insertUser(user);
         System.out.println(user.getId());
     }
