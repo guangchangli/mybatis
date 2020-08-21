@@ -108,7 +108,7 @@
             resultMap="userResultMapAss">
         select tb_user.*,student.name as sname, student.phone,  student.id as sid from tb_user left join student on tb_user.id=student.id where tb_user.id=#{id}
     </select>
-    <!-- 对象关联分布查询
+    <!-- 对象关联分步查询
        在mybatis中，
        resultMap可以实现高级映射(使用association、collection实现一对一及一对多映射)，
        association、collection具备延迟加载功能。

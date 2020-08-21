@@ -27,7 +27,8 @@
         </collection>
     </resultMap>
     <select id="getStudentUser" parameterType="string" resultMap="collectionResultMap">
-        select s.id as sId,s.sex as sSex,s.name as sName,t.id as tId,t.name as tName,t.sex as tSex from student s join person t on s.id=t.id where s.id=#{id}
+        select s.id as sId,s.sex as sSex,
+        s.name as sName,t.id as tId,t.name as tName,t.sex as tSex from student s join person t on s.id=t.id where s.id=#{id}
     </select>
     <resultMap id="collectionMap" type="Student">
         <id column="sId" property="id"/>
